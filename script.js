@@ -5,6 +5,7 @@ var quiz = document.getElementById("quizPage");
 var question = document.getElementById("question");
 var questionIndex = 0;
 var quizButtons = quiz.querySelectorAll("button");
+var timeDisplay = document.getElementById("timer");
 var timer = 60;
 
 // Create array of question objects
@@ -21,7 +22,7 @@ var questionArray = [
 function startTimer() {
     var countdown = setInterval(function() {
         timer--;
-        console.log(timer);
+        timeDisplay.textContent = timer;
         if (timer <= 0) {
             clearInterval(countdown);
         }
