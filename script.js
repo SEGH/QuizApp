@@ -5,15 +5,28 @@ var quiz = document.getElementById("quizPage");
 var question = document.getElementById("question");
 var questionIndex = 0;
 var quizButtons = quiz.querySelectorAll("button");
+var timer = 60;
 
 // Create array of question objects
 var questionArray = [
+    { question: "What is the answer to this?", answers: ["a", "b", "c", "d"], correct: "a" },
+    { question: "another for you?", answers: ["my answer", "your answer", "answer", "hmm"], correct: "hmm" },
+    { question: "what about this?", answers: ["this", "that", "the other one", "final"], correct: "final" },
     { question: "What is the answer to this?", answers: ["a", "b", "c", "d"], correct: "a" },
     { question: "another for you?", answers: ["my answer", "your answer", "answer", "hmm"], correct: "hmm" },
     { question: "what about this?", answers: ["this", "that", "the other one", "final"], correct: "final" }
 ];
 
 //Timer function
+function startTimer() {
+    var countdown = setInterval(function() {
+        timer--;
+        console.log(timer);
+        if (timer <= 0) {
+            clearInterval(countdown);
+        }
+    }, 1000);
+}
 
 // Event listener for start button
 startButton.addEventListener("click", function() {
@@ -23,7 +36,7 @@ startButton.addEventListener("click", function() {
     // Call quiz function
     showQuestion();
     // Start timer
-
+    startTimer();
 });
 
 // Event listener for quiz button clicks
@@ -35,7 +48,9 @@ quizButtons.forEach((button) => {
             console.log("correct!");
         } else {
             // If incorrect answer clicked, subtract from countdown
+            timer = timer - 10;
             console.log(button.textContent);
+            console.log(timer);
             console.log("wrong!");
         }
         // Increase current question object index
@@ -59,8 +74,4 @@ function showQuestion() {
             quizButtons[i].textContent = questionArray[questionIndex].answers[i];
         }
     }
-}
-    
-    
-        
-        
+}        
