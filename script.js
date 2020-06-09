@@ -1,12 +1,28 @@
+// Assignments
+var startSection = document.getElementById("startPage");
+var startButton = startSection.querySelector("button");
+var quiz = document.getElementById("quizPage");
+
 // Create array of question objects
 
+//Timer function
+
 // Event listener for start button
-    // Starts Quiz Function
+startButton.addEventListener("click", function() {
+    //Display quiz section
+    quiz.style.display = "flex";
+    startSection.style.display = "none";
+    // Call quiz function
+    // Start timer
+});
+
+// Event listener for quiz button clicks
+    // If incorrect answer clicked, subtract from countdown
+    // Increase current question object index
+    // Call Quiz function
 
 // Quiz function
-    // Timer counting down
-    // Loop through array of question objects
-        // Set button h1 as current object choices
-        // Event listener for choice button clicks
-        // If incorrect answer clicked, subtract from countdown
-    
+    // Display current question object question
+    // Display current question object answers as button text content
+    // If timer reaches zero or end of question array is reached
+        // Display score screen
