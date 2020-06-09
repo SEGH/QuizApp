@@ -23,39 +23,44 @@ startButton.addEventListener("click", function() {
     // Call quiz function
     showQuestion();
     // Start timer
+
 });
 
 // Event listener for quiz button clicks
-    // If incorrect answer clicked, subtract from countdown
-    // Increase current question object index
-    // Call Quiz function
+quizButtons.forEach((button) => {
+    button.addEventListener("click", function() {
+        var answer = questionArray[questionIndex].correct;
+        if (button.textContent === answer) {
+            console.log(button.textContent);
+            console.log("correct!");
+        } else {
+            // If incorrect answer clicked, subtract from countdown
+            console.log(button.textContent);
+            console.log("wrong!");
+        }
+        // Increase current question object index
+        questionIndex++;
+        // Call Quiz function
+        showQuestion();
+    });
+})
 
 // Quiz function
 function showQuestion() {
-    // Display current question object question
-    question.textContent = questionArray[questionIndex].question;
-    // Display current question object answers as button text content
-    for (var i = 0; i < quizButtons.length; i++) {
-        quizButtons[i].textContent = questionArray[questionIndex].answers[i];
+    // If timer reaches zero or end of question array is reached
+    if (questionIndex >= questionArray.length) {
+        // Display score screen
+        console.log("scores");
+    } else {
+        // Display current question object question
+        question.textContent = questionArray[questionIndex].question;
+        // Display current question object answers as button text content
+        for (var i = 0; i < quizButtons.length; i++) {
+            quizButtons[i].textContent = questionArray[questionIndex].answers[i];
+        }
     }
 }
     
     
-    // If timer reaches zero or end of question array is reached
-        // Display score screen
-
-// // Quiz function
-// function runQuiz() {
-//     // Timer counting down
-//     // Loop through array of question objects
-//     question.textContent = questionArray[questionIndex].question;
-//         for (var j = 0; j < questionArray[questionIndex].answers.length; j++) {
-//             // Set buttons as current object choices
-//             quizButtons[j].textContent = questionArray[questionIndex].answers[j];
-//         }
-
-
-//         // Event listener for choice button clicks
-//         clickButton();
-
-// }
+        
+        
