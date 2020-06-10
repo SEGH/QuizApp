@@ -14,6 +14,7 @@
             <h1>Javascript Quiz</h1>
             <p>Here's a quiz to sharpen your skills!</p>
             <button id="startBtn">Start Quiz</button>
+            <h2 id="viewScores">View High Scores</h2>
         </section>
 
         <section id="quizPage" class="flex-column jumbotron bg-light shadow-lg">
@@ -31,9 +32,17 @@
         <section id="endPage" class="flex-column align-items-center jumbotron bg-light shadow-lg">
             <h1>Save Results?</h1>
             <h2>Score: <span id="finalScore"></span></h2>
-            <input placeholder="Enter Initials" >
-            <button id="saveBtn">Save Score</button>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Enter Initials" name="userInitials" id="userInitials">
+                <button id="saveBtn">Save Score</button>
+            </div>
             <button id="restartBtn">Play Again</button>
+        </section>
+
+        <section id="scorePage" class="flex-column align-items-center jumbotron bg-light shadow-lg">
+            <h1>High Scores</h1>
+            <ul id="scoreList"></ul>
+            <button id="playAgain">Play Again</button>
         </section>
 
     </main>

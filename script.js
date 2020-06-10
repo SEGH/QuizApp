@@ -10,7 +10,13 @@ var timeDisplay = document.getElementById("timer");
 var timer = 60;
 var endQuiz = document.getElementById("endPage");
 var finalScore = document.getElementById("finalScore");
+var saveButton = document.getElementById("saveBtn");
 var restartButton = document.getElementById("restartBtn");
+var allScores = document.getElementById("scorePage");
+var scoreList = document.getElementById("scoreList");
+var replayButton = document.getElementById("playAgain");
+var userInitials = document.getElementById("userInitials");
+var viewScores = document.getElementById("viewScores");
 
 // Create array of question objects
 var questionArray = [
@@ -21,6 +27,12 @@ var questionArray = [
     { question: "another for you?", answers: ["my answer", "your answer", "answer", "hmm"], correct: "hmm" },
     { question: "what about this?", answers: ["this", "that", "the other one", "final"], correct: "final" }
 ];
+
+// To Do Array
+var userScores = [];
+console.log(userScores);
+init();
+console.log(userScores);
 
 //Timer function
 function startTimer() {
@@ -52,13 +64,10 @@ quizButtons.forEach((button) => {
     button.addEventListener("click", function() {
         var answer = questionArray[questionIndex].correct;
         if (button.textContent === answer) {
-            console.log(button.textContent);
             result.textContent = "correct!";
         } else {
             // If incorrect answer clicked, subtract from countdown
             timer = timer - 10;
-            console.log(button.textContent);
-            console.log(timer);
             result.textContent = "wrong!";
         }
         // Increase current question object index
@@ -91,6 +100,41 @@ function showScore() {
 // Save Score Function
 function saveScore() {
     // Save score and initals to local storage
+    var userObject = { initials: userInitials.value, score: finalScore.textContent };
+    userScores.push(userObject);
+    userInitials.value = "";
+    setToLocal();
+    showScorePage();
+}
+
+function setToLocal() {
+    localStorage.setItem("scores", JSON.stringify(userScores));
+}
+// Event Listener for Save button
+saveButton.addEventListener("click", saveScore);
+
+// Render Score History
+function renderScores() {
+    scoreList.innerHTML = "";
+
+    userScores.forEach(function (obj) {
+        var userRecord = document.createElement("li");
+        userRecord.textContent = obj.initials + ": " + obj.score;
+        scoreList.appendChild(userRecord);
+    });
+}
+
+function init() {
+    var tempScores = JSON.parse(localStorage.getItem("scores"));
+    userScores = tempScores;
+    renderScores();
+}
+// Display score history
+function showScorePage() {
+    init();
+    startSection.style.display = "none";
+    endQuiz.style.display = "none";
+    allScores.style.display = "flex";
 }
 
 // Event Listener for restart button
@@ -99,4 +143,17 @@ restartButton.addEventListener("click", function() {
     timer = 60;
     endQuiz.style.display = "none";
     startSection.style.display = "block";
-})
+});
+
+// Event Listener for replay button
+replayButton.addEventListener("click", function() {
+    questionIndex = 0;
+    timer = 60;
+
+    endQuiz.style.display = "none";
+    allScores.style.display = "none";
+    startSection.style.display = "block";
+});
+
+// Event Listener for view scores button on start page
+viewScores.addEventListener("click", showScorePage);
