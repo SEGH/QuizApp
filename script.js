@@ -3,10 +3,14 @@ var startSection = document.getElementById("startPage");
 var startButton = startSection.querySelector("button");
 var quiz = document.getElementById("quizPage");
 var question = document.getElementById("question");
+var result = document.getElementById("result");
 var questionIndex = 0;
 var quizButtons = quiz.querySelectorAll("button");
 var timeDisplay = document.getElementById("timer");
 var timer = 60;
+var endQuiz = document.getElementById("endPage");
+var finalScore = document.getElementById("finalScore");
+var restartButton = document.getElementById("restartBtn");
 
 // Create array of question objects
 var questionArray = [
@@ -23,7 +27,7 @@ function startTimer() {
     var countdown = setInterval(function() {
         timer--;
         timeDisplay.textContent = timer;
-        if (timer <= 0) {
+        if ((timer <= 0) || (questionIndex >= questionArray.length)) {
             clearInterval(countdown);
         }
     }, 1000);
@@ -46,13 +50,13 @@ quizButtons.forEach((button) => {
         var answer = questionArray[questionIndex].correct;
         if (button.textContent === answer) {
             console.log(button.textContent);
-            console.log("correct!");
+            result.textContent = "correct!";
         } else {
             // If incorrect answer clicked, subtract from countdown
             timer = timer - 10;
             console.log(button.textContent);
             console.log(timer);
-            console.log("wrong!");
+            result.textContent = "wrong!";
         }
         // Increase current question object index
         questionIndex++;
@@ -66,7 +70,7 @@ function showQuestion() {
     // If timer reaches zero or end of question array is reached
     if (questionIndex >= questionArray.length) {
         // Display score screen
-        console.log("scores");
+        showScore();
     } else {
         // Display current question object question
         question.textContent = questionArray[questionIndex].question;
@@ -75,4 +79,24 @@ function showQuestion() {
             quizButtons[i].textContent = questionArray[questionIndex].answers[i];
         }
     }
-}        
+}
+
+// Show Final Score
+function showScore() {
+    finalScore.textContent = timer;
+    quiz.style.display = "none";
+    endQuiz.style.display = "flex";
+}
+
+// Save Score Function
+function saveScore() {
+    // Save score and initals to local storage
+}
+
+// Event Listener for restart button
+restartButton.addEventListener("click", function() {
+    questionIndex = 0;
+    timer = 60;
+    endQuiz.style.display = "none";
+    startSection.style.display = "block";
+})
