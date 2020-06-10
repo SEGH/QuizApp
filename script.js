@@ -24,17 +24,20 @@ var questionArray = [
 
 //Timer function
 function startTimer() {
+    timeDisplay.textContent = timer;
     var countdown = setInterval(function() {
         timer--;
         timeDisplay.textContent = timer;
         if ((timer <= 0) || (questionIndex >= questionArray.length)) {
             clearInterval(countdown);
+            showScore();
         }
     }, 1000);
 }
 
 // Event listener for start button
 startButton.addEventListener("click", function() {
+    result.textContent = "";
     //Display quiz section
     quiz.style.display = "flex";
     startSection.style.display = "none";
@@ -68,10 +71,7 @@ quizButtons.forEach((button) => {
 // Quiz function
 function showQuestion() {
     // If timer reaches zero or end of question array is reached
-    if (questionIndex >= questionArray.length) {
-        // Display score screen
-        showScore();
-    } else {
+    if (questionIndex < questionArray.length) {
         // Display current question object question
         question.textContent = questionArray[questionIndex].question;
         // Display current question object answers as button text content
