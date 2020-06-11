@@ -20,12 +20,21 @@ var viewScores = document.getElementById("viewScores");
 
 // Create array of question objects
 var questionArray = [
-    { question: "What is the answer to this?", answers: ["a", "b", "c", "d"], correct: "a" },
-    { question: "another for you?", answers: ["my answer", "your answer", "answer", "hmm"], correct: "hmm" },
-    { question: "what about this?", answers: ["this", "that", "the other one", "final"], correct: "final" },
-    { question: "What is the answer to this?", answers: ["a", "b", "c", "d"], correct: "a" },
-    { question: "another for you?", answers: ["my answer", "your answer", "answer", "hmm"], correct: "hmm" },
-    { question: "what about this?", answers: ["this", "that", "the other one", "final"], correct: "final" }
+    { question: "Which of the following is not a basic value type?", answers: ["Strings", "Numbers", "Booleans", "Objects"], correct: "Objects" },
+    { question: "Which basic type is a collection of characters within quotation marks?", answers: ["Strings", "Numbers", "Booleans", "Text"], correct: "Strings" },
+    { question: "____ can be Integers or Decimals, positive or negative.", answers: ["Strings", "Numbers", "Booleans", "Arrays"], correct: "Numbers" },
+    { question: "What is a basic type that is only either true or false?", answers: ["Strings", "Numbers", "Booleans", "Arrays"], correct: "Booleans" },
+    { question: "What is a compound value type that can hold lists of any value type?", answers: ["Strings", "Numbers", "Objects", "Arrays"], correct: "Arrays" },
+    { question: "What is a compound value type that is a list of key/value pairs?", answers: ["Strings", "Functions", "Objects", "Arrays"], correct: "Objects" },
+    { question: "Assign  _____ to store values for use later.", answers: ["Variables", "Functions", "Objects", "Arrays"], correct: "Variables" },
+    { question: "_____ and accessors enable us to manipulate values.", answers: ["Strings", "Operators", "Objects", "Arrays"], correct: "Operators" },
+    { question: "What does the % (modulus) operator do?", answers: ["It turns a number into a percentage.", "It divides a number in half.", "It gives the remainder from division.", "It denotes a sale item."], correct: "It gives the remainder from division." },
+    { question: "Values and operators can combine to form _____ which evaluate to a single value.", answers: ["Functions", "Arguments", "Expressions", "Objects"], correct: "Expressions" },
+    { question: "What are > < != and what do they do?", answers: ["They are crocodile mouths that eat numbers.", "They are arithmetic operators that do math.", "Comparison operators that compare values and evaluate to true or false.", "Objects that form facial expressions."], correct: "Comparison operators that compare values and evaluate to true or false." },
+    { question: "Which of these are Logical Operators?", answers: ["@ ^ *", "&& || !", "$$ ()", ";-)"], correct: "&& || !" },
+    { question: "What is used to access specific elements in arrays or properties in objects?", answers: ["Accessors", "Maps", "Booleans", "Logical Operators"], correct: "Accessors" },
+    { question: "How are conditionals, loops, and event listeners similar?", answers: ["They all run continually until stop them.", "They all listen for events.", "They are all used to control the order of our program.", "They all make forks in the road."], correct: "They are all used to control the order of our program." },
+    { question: "____ are blocks of code that help organize it, making it more readable, scalable, and testable.", answers: ["Arithmetic operators", "Numbers", "Booleans", "Functions"], correct: "Functions" }
 ];
 
 // To Do Array
