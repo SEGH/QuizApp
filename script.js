@@ -30,9 +30,7 @@ var questionArray = [
 
 // To Do Array
 var userScores = [];
-console.log(userScores);
 init();
-console.log(userScores);
 
 //Timer function
 function startTimer() {
@@ -97,6 +95,9 @@ function showScore() {
     endQuiz.style.display = "flex";
 }
 
+// Event Listener for Save button
+saveButton.addEventListener("click", saveScore);
+
 // Save Score Function
 function saveScore() {
     // Save score and initals to local storage
@@ -110,13 +111,19 @@ function saveScore() {
 function setToLocal() {
     localStorage.setItem("scores", JSON.stringify(userScores));
 }
-// Event Listener for Save button
-saveButton.addEventListener("click", saveScore);
+
+// Display score history
+function showScorePage() {
+    init();
+    startSection.style.display = "none";
+    endQuiz.style.display = "none";
+    allScores.style.display = "flex";
+}
 
 // Render Score History
 function renderScores() {
     scoreList.innerHTML = "";
-
+    usersScores.sort(function(a, b) {return a.score - b.score});
     userScores.forEach(function (obj) {
         var userRecord = document.createElement("li");
         userRecord.textContent = obj.initials + ": " + obj.score;
@@ -126,15 +133,10 @@ function renderScores() {
 
 function init() {
     var tempScores = JSON.parse(localStorage.getItem("scores"));
-    userScores = tempScores;
-    renderScores();
-}
-// Display score history
-function showScorePage() {
-    init();
-    startSection.style.display = "none";
-    endQuiz.style.display = "none";
-    allScores.style.display = "flex";
+    if (tempScores !== null) {
+        userScores = tempScores;
+        renderScores();
+    }
 }
 
 // Event Listener for restart button
