@@ -32,30 +32,12 @@ var questionArray = [
 var userScores = [];
 init();
 
-//Timer function
-function startTimer() {
-    timeDisplay.textContent = timer;
-    var countdown = setInterval(function() {
-        timer--;
-        timeDisplay.textContent = timer;
-        if ((timer <= 0) || (questionIndex >= questionArray.length)) {
-            clearInterval(countdown);
-            showScore();
-        }
-    }, 1000);
-}
-
-// Event listener for start button
-startButton.addEventListener("click", function() {
-    result.textContent = "";
-    //Display quiz section
-    quiz.style.display = "flex";
-    startSection.style.display = "none";
-    // Call quiz function
-    showQuestion();
-    // Start timer
-    startTimer();
-});
+// Event Listeners
+startButton.addEventListener("click", startQuiz);
+replayButton.addEventListener("click", restartQuiz);
+restartButton.addEventListener("click", restartQuiz);
+saveButton.addEventListener("click", saveScore);
+viewScores.addEventListener("click", showScorePage);
 
 // Event listener for quiz button clicks
 quizButtons.forEach((button) => {
@@ -74,6 +56,31 @@ quizButtons.forEach((button) => {
         showQuestion();
     });
 })
+
+// Start Quiz function
+function startQuiz() {
+    result.textContent = "";
+    //Display quiz section
+    quiz.style.display = "flex";
+    startSection.style.display = "none";
+    // Call quiz function
+    showQuestion();
+    // Start timer
+    startTimer();
+}
+
+//Timer function
+function startTimer() {
+    timeDisplay.textContent = timer;
+    var countdown = setInterval(function() {
+        timer--;
+        timeDisplay.textContent = timer;
+        if ((timer <= 0) || (questionIndex >= questionArray.length)) {
+            clearInterval(countdown);
+            showScore();
+        }
+    }, 1000);
+}
 
 // Quiz function
 function showQuestion() {
@@ -94,9 +101,6 @@ function showScore() {
     quiz.style.display = "none";
     endQuiz.style.display = "flex";
 }
-
-// Event Listener for Save button
-saveButton.addEventListener("click", saveScore);
 
 // Save Score Function
 function saveScore() {
@@ -139,23 +143,10 @@ function init() {
     }
 }
 
-// Event Listener for restart button
-restartButton.addEventListener("click", function() {
+function restartQuiz() {
     questionIndex = 0;
     timer = 60;
-    endQuiz.style.display = "none";
-    startSection.style.display = "block";
-});
-
-// Event Listener for replay button
-replayButton.addEventListener("click", function() {
-    questionIndex = 0;
-    timer = 60;
-
     endQuiz.style.display = "none";
     allScores.style.display = "none";
     startSection.style.display = "block";
-});
-
-// Event Listener for view scores button on start page
-viewScores.addEventListener("click", showScorePage);
+}
