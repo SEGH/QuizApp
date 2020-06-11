@@ -123,7 +123,7 @@ function showScorePage() {
 // Render Score History
 function renderScores() {
     scoreList.innerHTML = "";
-    usersScores.sort(function(a, b) {return a.score - b.score});
+
     userScores.forEach(function (obj) {
         var userRecord = document.createElement("li");
         userRecord.textContent = obj.initials + ": " + obj.score;
