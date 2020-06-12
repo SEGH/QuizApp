@@ -10,7 +10,7 @@
     display: none;
 }
 
-button:focus {
+#quizPage button:hover {
     box-shadow: none !important;
     background-color: transparent !important;
     color: #343a40 !important;
